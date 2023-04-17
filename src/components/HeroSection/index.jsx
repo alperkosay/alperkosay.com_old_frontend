@@ -84,13 +84,13 @@ const HeroSection = () => {
     return (
         <>
 
-            <section className={`hero-section p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`} style={{ color: snap.color }}>
+            <section className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`} style={{ color: snap.color }}>
 
                 <div className="flex justify-between flex-col lg:flex-row h-full">
 
                     <div className='w-max'>
 
-                        <h1 className={`title text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
+                        <h1 className={`title text-[4.5rem] md:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
                             Merhaba
                         </h1>
 
