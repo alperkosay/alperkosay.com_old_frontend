@@ -75,10 +75,8 @@ const HeroSection = () => {
 
     }, [])
 
-
     const ScrollDown = () => {
         window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
-
     }
 
     return (
