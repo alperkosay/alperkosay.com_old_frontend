@@ -83,7 +83,15 @@ const ProjectsSection = () => {
         <div className="projects-wrapper py-8">
           <Swiper
             spaceBetween={50}
-            slidesPerView={3}
+            slidesPerView={1}
+            breakpoints={{
+              768:{
+                slidesPerView:2
+              },
+              1024:{
+                slidesPerView: 3
+              }
+            }}
           >
             {
               projectsData &&
