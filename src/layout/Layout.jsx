@@ -12,17 +12,21 @@ const Layout = ({ children }) => {
     return (
         <>
             {children}
-            <footer className={`py-8 border-t `} style={{ color: snap.color }}>
+            <footer className={`py-8 border-t footer-background`} style={{ color: snap.color }}>
 
                 <div className="container mx-auto">
-                    <div className="inner flex justify-between">
+                    <div className="inner flex gap-y-6 flex-wrap items-center justify-between">
                         <p className='lg:text-lg font-medium'>
-                            Alper Koşay &copy; Tüm Hakları Saklıdır.
+                            Alper Koşay 2023 &copy; Tüm Hakları Saklıdır.
                         </p>
 
-                        <div className="social">
-                            <a href={"https://github.com/Awoked"} target='_blank' >
-                                <AiFillGithub size={24} />
+                        <div className="social flex gap-3">
+                            <a
+                                href={"https://github.com/Awoked"}
+                                target='_blank'
+                                className='w-max flex hover:opacity-90'
+                            >
+                                <AiFillGithub size={28} />
                             </a>
                         </div>
                     </div>

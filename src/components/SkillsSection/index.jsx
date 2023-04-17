@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react'
-import { gsap } from 'gsap';
+import React, { useEffect, useRef, useState } from 'react'
+import { Bounce, Elastic, Expo, Power4, gsap } from 'gsap';
 import SkillCard from './SkillCard';
 
 import styles from "./skills.module.css";
+
+import { useInView } from "react-intersection-observer";
 
 const SkillsSection = () => {
 
@@ -78,22 +80,74 @@ const SkillsSection = () => {
 
     ]);
 
+
+    const [isInView, setIsInView] = useState(false);
+    const { ref, inView } = useInView({
+        threshold: 0,
+    });
+
+    if (inView && !isInView) {
+        setIsInView(true);
+    }
+
     useEffect(() => {
 
+        const tl = gsap.timeline();
+        tl.fromTo(".skills-section .section-title",
+            {
+                opacity: 0,
+                scale: .9
+            },
+            {
+                opacity: 1,
+                scale: 1,
+                duration: 1,
+                ease: Expo.easeInOut
+            }
+        )
+        tl.fromTo(".skills-section .skills-description", 
+            {
+                opacity: 0
+            },
+            {
+                opacity: 1,
+                duration: .6,
+                ease: Power4
+            }
+        )
 
-    }, []);
+        tl.fromTo(".skill-card",
+            {
+                scale: .95,
+                opacity: 0,
+                y: -60,
+                x: -100
+            },
+            {
+                scale: 1,
+                opacity: 1,
+                y: 0,
+                x: 0,
+                stagger: .35,
+                duration: .6,
+                ease: Elastic.easeInOut
+            }
+        )
+
+    }, [isInView]);
 
     return (
         <section className={`min-h-screen skills-section py-10 ${styles.background}`}>
             <div className="section-title">
                 <h1>
                     Yeteneklerim
+
                 </h1>
             </div>
 
             <div className="container mx-auto">
 
-                <div className="skills">
+                <div className="skills-description">
 
                     <p className='text-center'>
                         {"Hala öğrenme aşamasındayım ama kim değil ki? :)"}
@@ -101,7 +155,7 @@ const SkillsSection = () => {
 
                 </div>
 
-                <div className="skills-grid-wrapper py-8 pb-20 pt-20 grid grid-cols-1 md:grid-cols-2 gap-y-24 md:gap-y-16 gap-14 xl:gap-x-24 2xl:gap-x-40">
+                <div ref={ref} className="skills-grid-wrapper py-8 pb-20 pt-20 grid grid-cols-1 md:grid-cols-2 gap-y-24 md:gap-y-16 gap-14 xl:gap-x-24 2xl:gap-x-40">
 
                     {
                         skillsData &&
