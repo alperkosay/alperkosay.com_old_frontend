@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 
 
-import { BiCodeAlt } from "react-icons/bi";
+import { BiChevronLeft, BiChevronRight, BiCodeAlt } from "react-icons/bi";
 
 import { Swiper, SwiperSlide } from 'swiper/react';
 
@@ -9,7 +9,9 @@ import 'swiper/css';
 import ProjectCard from './ProjectCard';
 import { useInView } from 'react-intersection-observer';
 import { Expo, Power4, gsap } from 'gsap';
-
+import { useSnapshot } from 'valtio';
+import store from "../../store"
+import { Navigation } from 'swiper';
 const ProjectsSection = () => {
 
   const [projectsData, setProjectsData] = useState([
@@ -22,13 +24,16 @@ const ProjectsSection = () => {
     },
     {
       imageUrl: "/images/projects/e-ticaret.png",
-      details: "Next.js, TailwindCSS, Chakra UI, MySql Kullanarak üzerinde çalışmaya devam ettiğim fullstack bir proje. Şuanlık githubda private repository.",
+      details: "NextJS, TailwindCSS, Chakra UI, MySql Kullanarak üzerinde çalışmaya devam ettiğim fullstack bir proje. Şuanlık githubda private repository.",
       liveLink: "https://proje3.alperwebapp.online",
       title: "E-Ticaret Projesi",
     }
   ]);
 
+  const snap = useSnapshot(store);
 
+  const sliderNext = useRef(null);
+  const sliderPrev = useRef(null);
 
   const [isInView, setIsInView] = useState(false);
   const { ref, inView } = useInView({
@@ -82,13 +87,18 @@ const ProjectsSection = () => {
       <div className="container mx-auto">
         <div className="projects-wrapper py-8">
           <Swiper
+            modules={[Navigation]}
+            navigation={{
+              nextEl: sliderNext.current,
+              prevEl: sliderPrev.current
+            }}
             spaceBetween={50}
             slidesPerView={1}
             breakpoints={{
-              768:{
-                slidesPerView:2
+              768: {
+                slidesPerView: 2
               },
-              1024:{
+              1024: {
                 slidesPerView: 3
               }
             }}
@@ -110,7 +120,14 @@ const ProjectsSection = () => {
                 </SwiperSlide>
               ))
             }
-
+            <div className="navigation py-10 flex justify-center gap-3 text-4xl" style={{ color: snap.color }}>
+              <button ref={sliderPrev}>
+                <BiChevronLeft />
+              </button>
+              <button ref={sliderNext}>
+                <BiChevronRight />
+              </button>
+            </div>
           </Swiper>
         </div>
       </div>
