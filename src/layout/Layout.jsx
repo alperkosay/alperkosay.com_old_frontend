@@ -5,7 +5,6 @@ import { useSnapshot } from 'valtio'
 import { AiFillGithub } from "react-icons/ai";
 import Link from 'next/link';
 
-import style from "./test.model.css";
 const Layout = ({ children }) => {
 
     const snap = useSnapshot(state);
@@ -13,7 +12,7 @@ const Layout = ({ children }) => {
     return (
         <>
             {children}
-            <footer className={`py-8 border-t ${style.background}`} style={{ color: snap.color }}>
+            <footer className={`py-8 border-t `} style={{ color: snap.color }}>
 
                 <div className="container mx-auto">
                     <div className="inner flex justify-between">
