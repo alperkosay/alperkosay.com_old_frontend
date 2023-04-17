@@ -89,7 +89,7 @@ const ProjectsSection = () => {
               projectsData &&
               projectsData.map((project, index) => (
 
-                <SwiperSlide>
+                <SwiperSlide key={index}>
 
                   <ProjectCard
                     imageUrl={project.imageUrl}
