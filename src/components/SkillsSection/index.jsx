@@ -33,7 +33,7 @@ const SkillsSection = () => {
         {
             name: "Tailwind CSS",
             level: 90,
-            detail: "Bu projeyi hazırlarken ve diğer tüm React projelerimde kullanmaktayım."
+            detail: "Bu web projesinde ve diğer tüm React projelerimde kullanmaktayım."
         },
 
         {

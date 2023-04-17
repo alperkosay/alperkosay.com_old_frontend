@@ -56,10 +56,10 @@ const AboutSection = () => {
             <div className="container mx-auto">
                 <div className="about-description">
                     <p>
-                        Ben Alper Koşay, 17 yaşımdayım, İstanbulda yaşamaktayım ve 12. sınıf meslek lisesi öğrencisiyim.
-                        Lise 10. sınıf ile başlayan yazılım serüvenimde hem sektörden hemde kişisel olarak pek çok tecrübe edindim.
-                        Genelde lafla övünmektense bir şeyleri göstererek övünmeyi severim.
-                        Hobilerimden bahsetmem gerekirse <Link href={"#cizimlerim"} className='link-v1'>çizim</Link> yapmaktan ve müzik dinlemekten keyif alıyorum.
+                        BBen Alper Koşay, 17 yaşındayım, İstanbul'da yaşıyorum ve 12. sınıf meslek lisesi öğrencisiyim.
+                        Lise 10. sınıf ile başlayan yazılım serüvenimde hem sektörden hem de kişisel olarak pek çok tecrübe kazandım.
+                        Genellikle lafı geçiştirmektense bir şeyleri göstererek övünmeyi tercih ederim.
+                        Hobilerimden bahsetmem gerekirse, <Link href={"#cizimlerim"} className='link-v1'>çizim</Link> yapmaktan ve müzik dinlemekten keyif alıyorum.
                     </p>
                 </div>
             </div>
