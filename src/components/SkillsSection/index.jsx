@@ -75,7 +75,7 @@ const SkillsSection = () => {
         {
             name: "NodeJS",
             level: 60,
-            detail: "Node.js, Express, Mysql, Sequelize gibi kütüphaneler kullanarak api yazabilirim. Genelde NextJS de api yazıyorum."
+            detail: "Node.js, Express, Mysql, Sequelize gibi kütüphaneler kullanarak api yazabilirim. Genelde NextJS'de api yazıyorum."
         },
 
     ]);

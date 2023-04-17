@@ -88,12 +88,12 @@ const HeroSection = () => {
 
                     <div className='w-max'>
 
-                        <h1 className={`title text-[4.5rem] md:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
+                        <h1 className={`title max-[320px]:text-[3rem] max-[375px]:text-[3.5rem] text-[4.5rem] md:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
                             Merhaba
                         </h1>
 
                         <h1
-                            className={`sub-title text-[4rem] xl:text-[7rem] 2xl:text-[9rem]`}
+                            className={`sub-title max-[320px]:text-[2.5rem] max-[375px]:text-[3rem] text-[4rem] xl:text-[7rem] 2xl:text-[9rem]`}
 
                         >
                             {
