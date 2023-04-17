@@ -116,7 +116,7 @@ const HeroSection = () => {
                         />
                     </div>
                 </div>
-                <div className='scroll-down absolute bottom-20 left-1/2 -translate-x-1/2'>
+                <div className='scroll-down absolute bottom-0 md:bottom-20 left-1/2 -translate-x-1/2'>
                     <button
                         className="scrollDownBtn p-3 animate-bounce"
                         onClick={ScrollDown}
