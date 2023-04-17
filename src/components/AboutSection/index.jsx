@@ -57,7 +57,7 @@ const AboutSection = () => {
                     <p>
                         Ben Alper Koşay, 17 yaşındayım, İstanbul&apos;da yaşıyorum ve 12. sınıf meslek lisesi öğrencisiyim.
                         Lise 10. sınıf ile başlayan yazılım serüvenimde hem sektörden hem de kişisel olarak pek çok tecrübe kazandım.
-                        Lafla övünmektense yaptıklarımla övünmeyi tercih ederim.
+                        Lafla övünmektense yaptıklarımla övünmeyi tercih eden biriyim.
                         Hobilerimden bahsetmem gerekirse, <Link href={"#cizimlerim"} className='link-v1'>çizim</Link> yapmaktan ve müzik dinlemekten keyif alıyorum.
                     </p>
                 </div>
