@@ -52,7 +52,6 @@ const AboutSection = () => {
                     Kimim ben?
                 </h1>
             </div>
-
             <div className="container mx-auto">
                 <div className="about-description">
                     <p>
