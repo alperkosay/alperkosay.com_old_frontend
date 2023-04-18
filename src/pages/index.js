@@ -6,6 +6,7 @@ import AboutSection from '@/components/AboutSection';
 import DrawingsSection from '@/components/DrawingsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import Head from 'next/head';
+import ContactSection from '@/components/ContactSection';
 
 const chivo_mono = Chivo_Mono({ subsets: ['latin'] })
 
@@ -29,6 +30,7 @@ export default function Home() {
         <SkillsSection />
         <ProjectsSection />
         <DrawingsSection />
+        <ContactSection />
       </main>
     </>
   )
