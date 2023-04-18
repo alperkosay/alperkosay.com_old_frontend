@@ -23,7 +23,7 @@ const ContactSection = () => {
 
         if (!values.name) {
             errors.name = 'İsim girmeniz zorunludur';
-        } else if (values.name.length < 2 && values.name.length > 35) {
+        } else if (values.name.length < 2 || values.name.length > 35) {
             errors.name = 'Hatalı isim girişi.';
         }
 
