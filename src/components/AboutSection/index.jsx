@@ -1,7 +1,11 @@
 import { Elastic, Expo, Power4, gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 import Link from 'next/link';
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useRef, useState } from 'react'
 import { useInView } from 'react-intersection-observer';
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 const AboutSection = () => {
 
@@ -14,46 +18,64 @@ const AboutSection = () => {
         setIsInView(true);
     }
 
+    const sectionTitle = useRef(null);
+    const description = useRef(null);
+
+
     useEffect(() => {
 
         const tl = gsap.timeline();
-        tl.fromTo(".about-section .section-title",
+        tl.fromTo(sectionTitle.current,
             {
-                opacity: 0,
-                scale: .9
+                opacity: 0
             },
             {
                 opacity: 1,
-                scale: 1,
-                duration: 1,
-                ease: Expo.easeInOut
+                scrollTrigger: {
+                    trigger: sectionTitle.current,
+                    start: "top 100%",
+                    end: "top 60%",
+                    scrub: true,
+                },
+                duration: 3,
+                ease: Expo.easeInOut,
+
             }
         )
-        tl.fromTo(".about-section .about-description",
+        tl.fromTo(description.current,
             {
                 opacity: 0
             },
             {
                 opacity: 1,
                 duration: .6,
-                ease: Power4.easeInOut
+                ease: Power4.easeInOut,
+                scrollTrigger: {
+                    trigger: description.current,
+                    scrub: true,
+                    start: "top 100%",
+                    end: "top 40%",
+                }
             }
         )
 
 
-    }, [isInView]);
+    }, []);
+
+
+
 
 
 
     return (
         <section ref={ref} className='py-8 about-section'>
-            <div className="section-title">
+            <div ref={sectionTitle} className="section-title">
                 <h1>
                     Kimim ben?
                 </h1>
             </div>
             <div className="container mx-auto">
-                <div className="about-description">
+                <div ref={description} className="about-description">
                     <p>
                         Ben Alper Koşay, 17 yaşındayım, İstanbul&apos;da yaşıyorum ve 12. sınıf meslek lisesi öğrencisiyim.
                         Lise 10. sınıf ile başlayan yazılım serüvenimde hem sektörden hem de kişisel olarak pek çok tecrübe kazandım.

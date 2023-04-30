@@ -1,11 +1,16 @@
 import { ErrorMessage, Field, Form, Formik } from 'formik'
-import React from 'react'
+import React, { useEffect } from 'react'
 import { AiOutlineLoading3Quarters } from 'react-icons/ai'
 
 
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import emailjs from "@emailjs/browser";
+import { gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+
+gsap.registerPlugin(ScrollTrigger);
 
 const ContactSection = () => {
 
@@ -38,44 +43,31 @@ const ContactSection = () => {
     }
 
 
+    useEffect(() => {
+    
+        gsap.fromTo(".contact-section .form-group", 
+            {
+                y: -40,
+                opacity: 0,
+
+            },
+            {
+                y: 0,
+                opacity: 1,
+                duration: 1,
+                stagger: .25,
+                scrollTrigger: {
+                    trigger: ".contact-section",
+                    start: "top 100%",
+                    end: "bottom 90%",
+                }
+            }
+        )
+    }, []);
+
+
     const handleContactSubmit = (values, actions) => {
         actions.setSubmitting(true);
-        // fetch("/api/contact", {
-        //     method: "POST",
-
-        //     body: JSON.stringify(values)
-        // }).then(res => {
-
-        //     if (res.status === 200) {
-        //         setTimeout(() => {
-        //             actions.setSubmitting(false);
-        //             toast.success("Mesajınız başarıyla alınmıştır.", {
-        //                 position: "top-center",
-        //                 autoClose: 5000,
-        //                 hideProgressBar: false,
-        //                 closeOnClick: true,
-        //                 pauseOnHover: true,
-        //                 draggable: true,
-        //                 progress: undefined,
-        //                 theme: "light",
-        //             })
-        //         }, 1500);
-        //         return null;
-        //     }
-        //     setTimeout(() => {
-        //         actions.setSubmitting(false);
-        //         toast.error("Mesajınız alınamadı.", {
-        //             position: "top-center",
-        //             autoClose: 5000,
-        //             hideProgressBar: false,
-        //             closeOnClick: true,
-        //             pauseOnHover: true,
-        //             draggable: true,
-        //             progress: undefined,
-        //             theme: "light",
-        //         })
-        //     }, 1500);
-        // })
 
 
         emailjs.send('service_yw7p7jn', 'template_taelj62', { user_name: values.name, user_email: values.email, message: values.message }, '8rnHVwq8jxU7nr7Se')

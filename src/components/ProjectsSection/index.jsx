@@ -7,11 +7,14 @@ import { Swiper, SwiperSlide } from 'swiper/react';
 
 import 'swiper/css';
 import ProjectCard from './ProjectCard';
-import { useInView } from 'react-intersection-observer';
 import { Expo, Power4, gsap } from 'gsap';
 import { useSnapshot } from 'valtio';
 import store from "../../store"
 import { Navigation } from 'swiper';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
+
+gsap.registerPlugin(ScrollTrigger);
+
 const ProjectsSection = () => {
 
   const [projectsData, setProjectsData] = useState([
@@ -35,15 +38,6 @@ const ProjectsSection = () => {
   const sliderNext = useRef(null);
   const sliderPrev = useRef(null);
 
-  const [isInView, setIsInView] = useState(false);
-  const { ref, inView } = useInView({
-    threshold: 0,
-  });
-
-  if (inView && !isInView) {
-    setIsInView(true);
-  }
-
   useEffect(() => {
 
     const tl = gsap.timeline();
@@ -56,27 +50,40 @@ const ProjectsSection = () => {
         opacity: 1,
         scale: 1,
         duration: 1,
-        ease: Expo.easeInOut
+        ease: Expo.easeInOut,
+        scrollTrigger:{
+          trigger: ".projects-section .section-title",
+          scrub: true
+        }
       }
     )
-    tl.fromTo(".projects-section .projects-wrapper",
+    gsap.fromTo(".projects-section .project-card",
       {
-        opacity: 0
+        opacity: 0,
+        x: -100,
       },
       {
         opacity: 1,
-        duration: .6,
-        ease: Power4.easeInOut
+        x: 0,
+        duration: 1.4,
+        ease: Power4.easeInOut,
+        stagger: .10,
+        // delay: .5,
+        scrollTrigger:{
+          trigger: ".projects-section .projects-wrapper",
+          end: "bottom 40%",
+          scrub: true,
+        }
       }
     )
 
 
-  }, [isInView]);
+  }, []);
 
 
 
   return (
-    <section ref={ref} className='py-8 projects-section'>
+    <section className='py-8 projects-section'>
 
       <div className="section-title items-center gap-2">
         <h1>Projelerim </h1>

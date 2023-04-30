@@ -3,8 +3,9 @@ import { Bounce, Elastic, Expo, Power4, gsap } from 'gsap';
 import SkillCard from './SkillCard';
 
 import styles from "./skills.module.css";
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-import { useInView } from "react-intersection-observer";
+gsap.registerPlugin(ScrollTrigger);
 
 const SkillsSection = () => {
 
@@ -81,14 +82,7 @@ const SkillsSection = () => {
     ]);
 
 
-    const [isInView, setIsInView] = useState(false);
-    const { ref, inView } = useInView({
-        threshold: 0,
-    });
 
-    if (inView && !isInView) {
-        setIsInView(true);
-    }
 
     useEffect(() => {
 
@@ -102,17 +96,29 @@ const SkillsSection = () => {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
-                ease: Expo.easeInOut
+                ease: Expo.easeInOut,
+                scrollTrigger: {
+                    trigger: ".skills-section .skills-description",
+                    start: "top 100%",
+                    end: "bottom 70%",
+                    scrub: true
+                }
             }
         )
-        tl.fromTo(".skills-section .skills-description", 
+        tl.fromTo(".skills-section .skills-description",
             {
                 opacity: 0
             },
             {
                 opacity: 1,
                 duration: .6,
-                ease: Power4
+                ease: Power4,
+                scrollTrigger: {
+                    trigger: ".skills-section .skills-description",
+                    start: "top 100%",
+                    end: "bottom 70%",
+                    scrub: true
+                }
             }
         )
 
@@ -128,13 +134,19 @@ const SkillsSection = () => {
                 opacity: 1,
                 y: 0,
                 x: 0,
-                stagger: .35,
-                duration: .6,
-                ease: Elastic.easeInOut
+                stagger: .20,
+                duration: 2,
+                ease: Elastic.easeInOut,
+                scrollTrigger: {
+                    trigger: ".skills-section",
+                    scrub: true,
+                    start: "top 100%",
+                    end: "bottom 90%",
+                },
             }
         )
 
-    }, [isInView]);
+    }, []);
 
     return (
         <section className={`min-h-screen skills-section py-10 ${styles.background}`}>
@@ -155,7 +167,7 @@ const SkillsSection = () => {
 
                 </div>
 
-                <div ref={ref} className="skills-grid-wrapper py-8 pb-20 pt-20 grid grid-cols-1 md:grid-cols-2 gap-y-24 md:gap-y-16 gap-14 xl:gap-x-24 2xl:gap-x-40">
+                <div className="skills-grid-wrapper py-8 pb-20 pt-20 grid grid-cols-1 md:grid-cols-2 gap-y-24 md:gap-y-16 gap-14 xl:gap-x-24 2xl:gap-x-40">
 
                     {
                         skillsData &&

@@ -1,10 +1,10 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
 import MyGallery from './MyGallery';
-import { useInView } from 'react-intersection-observer';
 import { Expo, Power4, gsap } from 'gsap';
+import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
-
+gsap.registerPlugin(ScrollTrigger);
 
 
 
@@ -79,19 +79,10 @@ const DrawingsSection = () => {
     ]);
 
 
-    const [isInView, setIsInView] = useState(false);
-    const { ref, inView } = useInView({
-        threshold: 0,
-    });
-
-    if (inView && !isInView) {
-        setIsInView(true);
-    }
 
     useEffect(() => {
 
-        const tl = gsap.timeline();
-        tl.fromTo(".drawings-section .section-title",
+        gsap.fromTo(".drawings-section .section-title",
             {
                 opacity: 0,
                 scale: .9
@@ -100,27 +91,46 @@ const DrawingsSection = () => {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
-                ease: Expo.easeInOut
-            }
-        )
-        tl.fromTo(".drawings-section .gallery-wrapper",
-            {
-                opacity: 0
-            },
-            {
-                opacity: 1,
-                duration: 1.6,
-                ease: Power4.easeInOut
+                ease: Expo.easeInOut,
+                scrollTrigger: {
+                    trigger: ".drawings-section .section-title",
+                    scrub: true,
+                    end: "top 40%",
+                }
             }
         )
 
+        setTimeout(() => {
+            gsap.fromTo(".drawings-section .gallery-wrapper img",
+                {
+                    opacity: 0,
+                    scale: .7,
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    stagger: .20,
+                    duration: 1,
+                    ease: Expo.easeInOut,
+                    scrollTrigger: {
+                        trigger: ".drawings-section .gallery-wrapper",
+                        scrub: true,
+                        start: "top 100%",
+                        end: "bottom 90%",
+                    }
+                }
+            )
+        }, 1500);
 
-    }, [isInView]);
+
+
+
+    }, []);
 
 
 
     return (
-        <section ref={ref} id='cizimlerim' className='py-8 drawings-section'>
+        <section id='cizimlerim' className='py-8 drawings-section'>
             <div className="section-title flex gap-3 items-center">
                 <h1>Çizimlerim</h1>
                 <Image src={"/images/peepodraw.gif"} width={64} height={64} alt='peepo draw' />
