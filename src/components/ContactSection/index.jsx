@@ -58,6 +58,7 @@ const ContactSection = () => {
                 stagger: .25,
                 scrollTrigger: {
                     trigger: ".contact-section",
+                    toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "bottom 90%",
                 }

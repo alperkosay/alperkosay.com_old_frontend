@@ -111,10 +111,11 @@ const DrawingsSection = () => {
                     scale: 1,
                     stagger: .20,
                     duration: 1,
+                    delay: .5,
                     ease: Expo.easeInOut,
                     scrollTrigger: {
                         trigger: ".drawings-section .gallery-wrapper",
-                        scrub: true,
+                        toggleActions: "restart none none none",
                         start: "top 100%",
                         end: "bottom 90%",
                     }

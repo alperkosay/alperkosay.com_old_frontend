@@ -122,7 +122,7 @@ const SkillsSection = () => {
             }
         )
 
-        tl.fromTo(".skill-card",
+        gsap.fromTo(".skill-card",
             {
                 scale: .95,
                 opacity: 0,
@@ -136,10 +136,11 @@ const SkillsSection = () => {
                 x: 0,
                 stagger: .20,
                 duration: 2,
+                delay: .2,
                 ease: Elastic.easeInOut,
                 scrollTrigger: {
                     trigger: ".skills-section",
-                    scrub: true,
+                    toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "bottom 90%",
                 },

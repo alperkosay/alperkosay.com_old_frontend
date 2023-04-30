@@ -68,9 +68,10 @@ const ProjectsSection = () => {
         duration: 1.4,
         ease: Power4.easeInOut,
         stagger: .10,
-        // delay: .5,
+        delay: .5,
         scrollTrigger:{
           trigger: ".projects-section .projects-wrapper",
+          toggleActions: "restart none none none",
           end: "bottom 40%",
         }
       }
