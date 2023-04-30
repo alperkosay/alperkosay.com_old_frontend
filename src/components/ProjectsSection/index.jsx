@@ -72,7 +72,6 @@ const ProjectsSection = () => {
         scrollTrigger:{
           trigger: ".projects-section .projects-wrapper",
           end: "bottom 40%",
-          scrub: true,
         }
       }
     )

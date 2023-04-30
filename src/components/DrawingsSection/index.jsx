@@ -100,27 +100,27 @@ const DrawingsSection = () => {
             }
         )
 
-        // setTimeout(() => {
-        //     gsap.fromTo(".drawings-section .gallery-wrapper img",
-        //         {
-        //             opacity: 0,
-        //             scale: .7,
-        //         },
-        //         {
-        //             opacity: 1,
-        //             scale: 1,
-        //             stagger: .20,
-        //             duration: 1,
-        //             ease: Expo.easeInOut,
-        //             scrollTrigger: {
-        //                 trigger: ".drawings-section .gallery-wrapper",
-        //                 scrub: true,
-        //                 start: "top 100%",
-        //                 end: "bottom 90%",
-        //             }
-        //         }
-        //     )
-        // }, 1500);
+        setTimeout(() => {
+            gsap.fromTo(".drawings-section .gallery-wrapper img",
+                {
+                    opacity: 0,
+                    scale: .7,
+                },
+                {
+                    opacity: 1,
+                    scale: 1,
+                    stagger: .20,
+                    duration: 1,
+                    ease: Expo.easeInOut,
+                    scrollTrigger: {
+                        trigger: ".drawings-section .gallery-wrapper",
+                        scrub: true,
+                        start: "top 100%",
+                        end: "bottom 90%",
+                    }
+                }
+            )
+        }, 1500);
 
 
 
