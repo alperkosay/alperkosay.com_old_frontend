@@ -24,35 +24,36 @@ const AboutSection = () => {
 
     useEffect(() => {
 
-        const tl = gsap.timeline();
-        tl.fromTo(sectionTitle.current,
+        gsap.fromTo(sectionTitle.current,
             {
                 opacity: 0
             },
             {
                 opacity: 1,
+                delay: 0.3,
+                duration: 1,
                 scrollTrigger: {
                     trigger: sectionTitle.current,
                     start: "top 100%",
                     end: "top 60%",
-                    scrub: true,
+                    toggleActions: "restart none none none",
                 },
-                duration: 3,
                 ease: Expo.easeInOut,
 
             }
         )
-        tl.fromTo(description.current,
+        gsap.fromTo(description.current,
             {
                 opacity: 0
             },
             {
                 opacity: 1,
                 duration: .6,
+                delay: 0.2,
                 ease: Power4.easeInOut,
                 scrollTrigger: {
                     trigger: description.current,
-                    scrub: true,
+                    toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "top 40%",
                 }

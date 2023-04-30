@@ -86,8 +86,7 @@ const SkillsSection = () => {
 
     useEffect(() => {
 
-        const tl = gsap.timeline();
-        tl.fromTo(".skills-section .section-title",
+        gsap.fromTo(".skills-section .section-title",
             {
                 opacity: 0,
                 scale: .9
@@ -96,28 +95,32 @@ const SkillsSection = () => {
                 opacity: 1,
                 scale: 1,
                 duration: 1,
+                delay: 0.3,
                 ease: Expo.easeInOut,
                 scrollTrigger: {
                     trigger: ".skills-section .skills-description",
+                    toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "bottom 70%",
                     scrub: true
                 }
             }
         )
-        tl.fromTo(".skills-section .skills-description",
+        gsap.fromTo(".skills-section .skills-description",
             {
                 opacity: 0
             },
             {
                 opacity: 1,
                 duration: .6,
+                delay: 0.3,
                 ease: Power4,
                 scrollTrigger: {
                     trigger: ".skills-section .skills-description",
+                    
+                    toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "bottom 70%",
-                    scrub: true
                 }
             }
         )
