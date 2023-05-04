@@ -12,6 +12,11 @@ const DrawingsSection = () => {
 
     const [drawingsData, setDrawingsData] = useState([
         {
+            src: "/images/drawings/daftpunk.jpg",
+            width: 4,
+            height: 3
+        },
+        {
             src: "/images/drawings/1.jpg",
             width: 4,
             height: 3,
