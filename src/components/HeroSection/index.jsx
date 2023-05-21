@@ -88,7 +88,7 @@ const HeroSection = () => {
 
                     <div className='w-max'>
 
-                        <h1 className={`title max-[320px]:text-[3rem] max-[375px]:text-[3.5rem] text-[4.5rem] md:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
+                        <h1 className={`title opacity-0 max-[320px]:text-[3rem] max-[375px]:text-[3.5rem] text-[4.5rem] md:text-[5rem] xl:text-[8rem] 2xl:text-[10rem] font-bold text-inherit`}>
                             Merhaba
                         </h1>
 
@@ -98,7 +98,7 @@ const HeroSection = () => {
                         >
                             {
                                 [..."Ben Alper."].map((text, index) => (
-                                    <span key={index}>
+                                    <span key={index} className='opacity-0'>
                                         {text}
                                     </span>
                                 ))
@@ -109,7 +109,7 @@ const HeroSection = () => {
                     <div className='w-full h-full lg:w-[500px] flex justify-end'>
                         <Image
                             src="/images/peepocomfy-peepo.gif"
-                            className='-scale-x-100 peepo w-full h-full object-contain'
+                            className='-scale-x-100 peepo w-full h-full object-contain opacity-0'
                             width={500}
                             height={500}
                             alt="peepo"
