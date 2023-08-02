@@ -156,7 +156,7 @@ const DrawingsSection = () => {
                                 className='w-full h-auto mb-2'
                                 placeholder='blur'
                                 blurDataURL='/images/drawings/1.jpg'
-
+                                key={index}
                             />
                         ))
                     }
