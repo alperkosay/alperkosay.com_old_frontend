@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import React, { useEffect, useState } from 'react';
-import MyGallery from './MyGallery';
 import { Expo, Power4, gsap } from 'gsap';
 import { ScrollTrigger } from 'gsap/dist/ScrollTrigger';
 
@@ -114,7 +113,7 @@ const DrawingsSection = () => {
                 {
                     opacity: 1,
                     scale: 1,
-                    stagger: .20,
+                    stagger: .01,
                     duration: 1,
                     delay: .5,
                     ease: Expo.easeInOut,
@@ -138,13 +137,31 @@ const DrawingsSection = () => {
     return (
         <section id='cizimlerim' className='py-8 drawings-section'>
             <div className="section-title flex gap-3 items-center">
-                <h1>Çizimlerim</h1>
+                <h2>Çizimlerim</h2>
                 <Image src={"/images/peepodraw.gif"} width={64} height={64} alt='peepo draw' />
             </div>
 
             <div className="gallery-wrapper">
 
-                <MyGallery photos={drawingsData} />
+                {/* <MyGallery photos={drawingsData} /> */}
+
+                <div className='columns-1 sm:columns-2 md:columns-3 2xl:columns-4'>
+                    {
+                        drawingsData.map((data, index) => (
+                            <Image
+                                src={data.src}
+                                width={1024}
+                                height={768}
+                                alt='Alper Koşay / Çizimlerim'
+                                className='w-full h-auto mb-2'
+                                placeholder='blur'
+                                blurDataURL='/images/drawings/1.jpg'
+
+                            />
+                        ))
+                    }
+                </div>
+
             </div>
         </section>
     )

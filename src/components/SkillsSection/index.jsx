@@ -117,7 +117,7 @@ const SkillsSection = () => {
                 ease: Power4,
                 scrollTrigger: {
                     trigger: ".skills-section .skills-description",
-                    
+
                     toggleActions: "restart none none none",
                     start: "top 100%",
                     end: "bottom 70%",
@@ -155,10 +155,10 @@ const SkillsSection = () => {
     return (
         <section className={`min-h-screen skills-section py-10 ${styles.background}`}>
             <div className="section-title">
-                <h1>
+                <h2>
                     Yeteneklerim
 
-                </h1>
+                </h2>
             </div>
 
             <div className="container mx-auto">

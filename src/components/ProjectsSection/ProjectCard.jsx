@@ -17,9 +17,9 @@ const ProjectCard = ({ imageUrl, title, details, githubLink, liveLink }) => {
                 />
             </div>
             <div className="card-body py-4 px-3 flex flex-col gap-3">
-                <h4 className='font-medium text-xl'>
-                   {title} 
-                </h4>
+                <h3 className='font-medium text-xl'>
+                    {title}
+                </h3>
                 <p className='text-sm font-light'>
                     {details}
                 </p>

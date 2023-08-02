@@ -44,8 +44,8 @@ const ContactSection = () => {
 
 
     useEffect(() => {
-    
-        gsap.fromTo(".contact-section .form-group", 
+
+        gsap.fromTo(".contact-section .form-group",
             {
                 y: -40,
                 opacity: 0,
@@ -109,9 +109,9 @@ const ContactSection = () => {
         <section className='contact-section py-14'>
 
             <div className="section-title">
-                <h1>
+                <h2>
                     İletişim
-                </h1>
+                </h2>
             </div>
 
             <div className='container mx-auto'>

@@ -71,9 +71,9 @@ const AboutSection = () => {
     return (
         <section ref={ref} className='py-8 about-section'>
             <div ref={sectionTitle} className="section-title">
-                <h1>
+                <h2>
                     Kimim ben?
-                </h1>
+                </h2>
             </div>
             <div className="container mx-auto">
                 <div ref={description} className="about-description">
