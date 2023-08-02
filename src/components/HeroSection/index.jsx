@@ -15,65 +15,67 @@ const HeroSection = () => {
 
     // First Load Animations
     useEffect(() => {
-        const tl = gsap.timeline();
-        tl.fromTo(".title",
-            {
-                x: -200,
-                opacity: 0,
-            },
-            {
-                x: 0,
-                opacity: 1,
-                duration: 1,
-                ease: Expo.easeInOut
-            }
-        )
-        tl.fromTo(".sub-title span",
-            {
-                opacity: 0,
-                background: "black"
-            },
-            {
-                opacity: 1,
-                stagger: .25,
-                delay: .3,
-                background: "transparent",
-                ease: Bounce.easeInOut
-            }
-        )
+        if (!snap.loading) {
+            const tl = gsap.timeline();
+            tl.fromTo(".title",
+                {
+                    x: -200,
+                    opacity: 0,
+                },
+                {
+                    x: 0,
+                    opacity: 1,
+                    duration: 1,
+                    ease: Expo.easeInOut
+                }
+            )
+            tl.fromTo(".sub-title span",
+                {
+                    opacity: 0,
+                    background: "black"
+                },
+                {
+                    opacity: 1,
+                    stagger: .25,
+                    delay: .3,
+                    background: "transparent",
+                    ease: Bounce.easeInOut
+                }
+            )
 
-        tl.fromTo(".peepo",
-            {
-                x: 300,
-                opacity: 0,
-            },
-            {
-                x: 0,
-                opacity: 1,
-                duration: .8,
-                ease: Circ.easeInOut
-            }
-        )
-       
-
-        tl.fromTo(".scroll-down",
-            {
-                opacity: 0,
-                visibility: "hidden",
-                pointerEvents: "none",
-            },
-            {
-                opacity: 1,
-                visibility: "visible",
-                pointerEvents: "all",
-                delay: .5,
-                duration: 1,
-            }
-        )
+            // tl.fromTo(".peepo",
+            //     {
+            //         x: 300,
+            //         opacity: 0,
+            //     },
+            //     {
+            //         x: 0,
+            //         opacity: 1,
+            //         duration: .8,
+            //         ease: Circ.easeInOut
+            //     }
+            // )
 
 
+            tl.fromTo(".scroll-down",
+                {
+                    opacity: 0,
+                    visibility: "hidden",
+                    pointerEvents: "none",
+                },
+                {
+                    opacity: 1,
+                    visibility: "visible",
+                    pointerEvents: "all",
+                    delay: .5,
+                    duration: 1,
+                }
+            )
 
-    }, [])
+
+        }
+
+    }, [snap.loading])
 
     const ScrollDown = () => {
         window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -106,7 +108,7 @@ const HeroSection = () => {
                         </h1>
                     </div>
 
-                    <div className='w-full h-full lg:w-[500px] flex justify-end'>
+                    {/* <div className='w-full h-full lg:w-[500px] flex justify-end'>
                         <Image
                             src="/images/peepocomfy-peepo.gif"
                             className='-scale-x-100 peepo w-full h-full object-contain opacity-0'
@@ -114,7 +116,7 @@ const HeroSection = () => {
                             height={500}
                             alt="peepo"
                         />
-                    </div>
+                    </div> */}
                 </div>
                 <div className='scroll-down absolute bottom-0 md:bottom-20 left-1/2 -translate-x-1/2'>
                     <button

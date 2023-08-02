@@ -1,16 +1,24 @@
 import state from '@/store'
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import { useSnapshot } from 'valtio'
 
 import { AiFillGithub } from "react-icons/ai";
 import Link from 'next/link';
+import Preloader from '@/components/Preloader';
 
 const Layout = ({ children }) => {
-
     const snap = useSnapshot(state);
+
+    useEffect(() => {
+        setTimeout(() => {
+            state.loading = false;
+        }, 1000);
+    }, [])
+
 
     return (
         <>
+            {snap.loading && <Preloader />}
             {children}
             <footer className={`py-8 border-t footer-background`} style={{ color: snap.color }}>
 
@@ -36,6 +44,7 @@ const Layout = ({ children }) => {
             </footer>
         </>
     )
+
 }
 
 export default Layout
