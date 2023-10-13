@@ -7,40 +7,38 @@ export default async function handler(req, res) {
         main(async function () {
             const user = await prisma.user.findMany({
                 include: {
-                    posts: true
+                    posts: true,
+
                 }
             });
 
-            // const user = await prisma.user.create({
-            //     data: {
-            //         email: "as4124124d",
-
-            //         posts: {
-            //             create: {
-            //                 title: "asd"
-            //             }
-            //         }
-            //     }
-            // })
-            console.log('user', user)
 
             return res.json(user)
+
         })
     }
     else if (req.method === "POST") {
-        const { title } = req.body;
+        const { title, email } = req.body;
         main(async function () {
-            const user = await prisma.user.create({
-                data: {
-                    title,
-                    posts: {
-                        create: {
-                            title: "asd"
-                        }
+            try {
+                const user = await prisma.post.create({
+                    data: {
+                        authorId:1,
+                        title,
+                        
                     }
-                }
-            })
+                })
+                console.log('user', user)
+
+                return res.json(user)
+            } catch (error) {
+                return res.status(500).json({
+                    message: "error",
+                    error
+                })
+            }
+
         })
 
-    }
+        }
 }
