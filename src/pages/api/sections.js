@@ -4,18 +4,24 @@ import { main, prisma } from "../../../prisma/client"
 export default async function handler(req, res) {
 
     if (req.method === "GET") {
-        main(async function () {
-            const user = await prisma.user.findMany({
-                include: {
-                    posts: true,
+        try {
+            main(async function () {
+                const user = await prisma.user.findMany({
+                    include: {
+                        posts: true,
 
-                }
-            });
+                    }
+                });
 
 
-            return res.json(user)
+                return res.json(user)
 
-        })
+            })
+        } catch (error) {
+            return res.json({
+                error
+            })
+        }
     }
     else if (req.method === "POST") {
         const { title, email } = req.body;
@@ -23,9 +29,9 @@ export default async function handler(req, res) {
             try {
                 const user = await prisma.post.create({
                     data: {
-                        authorId:1,
+                        authorId: 1,
                         title,
-                        
+
                     }
                 })
                 console.log('user', user)
@@ -40,5 +46,5 @@ export default async function handler(req, res) {
 
         })
 
-        }
+    }
 }
