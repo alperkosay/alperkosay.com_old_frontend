@@ -43,19 +43,6 @@ const HeroSection = () => {
                 }
             )
 
-            // tl.fromTo(".peepo",
-            //     {
-            //         x: 300,
-            //         opacity: 0,
-            //     },
-            //     {
-            //         x: 0,
-            //         opacity: 1,
-            //         duration: .8,
-            //         ease: Circ.easeInOut
-            //     }
-            // )
-
 
             tl.fromTo(".scroll-down",
                 {
@@ -71,8 +58,6 @@ const HeroSection = () => {
                     duration: 1,
                 }
             )
-
-
         }
 
     }, [snap.loading])
@@ -84,7 +69,10 @@ const HeroSection = () => {
     return (
         <>
 
-            <section className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`} style={{ color: snap.color }}>
+            <section 
+            className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`} 
+            style={{ color: snap.color }}
+            >
 
                 <div className="flex justify-between flex-col lg:flex-row h-full">
 
@@ -96,7 +84,6 @@ const HeroSection = () => {
 
                         <h1
                             className={`sub-title max-[320px]:text-[2.5rem] max-[375px]:text-[3rem] text-[4rem] xl:text-[7rem] 2xl:text-[9rem]`}
-
                         >
                             {
                                 [..."Ben Alper."].map((text, index) => (
@@ -107,8 +94,8 @@ const HeroSection = () => {
                             }
                         </h1>
                     </div>
-
-                    {/* <div className='w-full h-full lg:w-[500px] flex justify-end'>
+{/* 
+                    <div className='w-full h-full lg:w-[500px] flex justify-end'>
                         <Image
                             src="/images/peepocomfy-peepo.gif"
                             className='-scale-x-100 peepo w-full h-full object-contain opacity-0'
@@ -116,7 +103,8 @@ const HeroSection = () => {
                             height={500}
                             alt="peepo"
                         />
-                    </div> */}
+                    </div>
+                     */}
                 </div>
                 <div className='scroll-down absolute bottom-0 md:bottom-20 left-1/2 -translate-x-1/2'>
                     <button
