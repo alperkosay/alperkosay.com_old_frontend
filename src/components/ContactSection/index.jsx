@@ -139,7 +139,7 @@ const ContactSection = () => {
                                     <div className="form-inner flex flex-col gap-4">
                                         <div className="form-group">
                                             <label htmlFor="name">Adınız</label>
-                                            <Field name="name" id="name" placeholder="Adınız" className="contact-form-input" />
+                                            <Field  name="name" id="name" placeholder="Adınız" className="contact-form-input" />
                                             <div className="error">
                                                 <ErrorMessage name='name' />
                                             </div>
