@@ -4,27 +4,22 @@ import { main, prisma } from "../../../prisma/client"
 export default async function handler(req, res) {
 
     if (req.method === "GET") {
-        try {
-            main(async function () {
-                const user = await prisma.user.findMany({
-                    include: {
-                        posts: true,
+        main(async function () {
+            try {
+                const sectionData = await prisma.sectionData.findMany()
 
-                    }
-                });
+                return res.json(sectionData)
+            } catch (error) {
+                return res.status(500).json({
+                    error
+                })
+            }
+        })
 
-
-                return res.json(user)
-
-            })
-        } catch (error) {
-            return res.json({
-                error
-            })
-        }
     }
     else if (req.method === "POST") {
         const { title, email } = req.body;
+
         main(async function () {
             try {
                 const user = await prisma.post.create({
