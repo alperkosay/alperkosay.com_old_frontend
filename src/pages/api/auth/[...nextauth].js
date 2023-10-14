@@ -24,18 +24,39 @@ const authOptions = {
                             userName,
                             AND: {
                                 password
-                            }
+                            }   
                         }
                     })
                 })
-                console.log('user', user)
 
                 return user
             }
         })
     ],
+    callbacks: {
+        async jwt({ token, user }) {
+            if (user) {
+                token.role = user.role; 
+                token.userName = user.userName;
+            }
+            return token;
+        },
 
+        async session({ session, token }) {
+            if (session.user) {
+                session.user.role = token.role;
+                session.user.userName = token.userName;
+            }
+            return session;
+        }
+    },
+    session: {
+        strategy: 'jwt',
+        maxAge: 30 * 24 * 60 * 60,
+    },
+    secret: process.env.SECRET_AUTH_KEY
 }
 
 export default NextAuth(authOptions);
 
+export {authOptions};

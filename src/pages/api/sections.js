@@ -1,51 +1,72 @@
+import { getSession } from "next-auth/react"
 import { main, prisma } from "../../../prisma/client"
+import { getServerSession } from "next-auth"
+import { authOptions } from "./auth/[...nextauth]"
 
 
 export default async function handler(req, res) {
+    const session = await getServerSession(req, res, authOptions)
+
 
     if (req.method === "GET") {
 
-        main(async function(){
-            const user = await prisma.user.create({
-                data:{
-                    userName: "Alper",
-                    email: "alper.kossay@gmail.com",
-                    password: "alperkosay",
-    
-                }
-            })
+        main(async function () {
+            try {
+                const sectionData = await prisma.sectionData.findMany({
+                    include: {
+                        Gallery: true
+                    }
+                })
 
-            return res.json(user)
+                res.json(sectionData)
+            } catch (error) {
+                res.status(500).json({
+                    message: "error"
+                })
+            }
         })
 
-        // main(async function () {
-        //     try {
-        //         const sectionData = await prisma.sectionData.findMany()
-
-        //         return res.json(sectionData)
-        //     } catch (error) {
-        //         return res.status(500).json({
-        //             error
-        //         })
-        //     }
-        // })
-
+        return;
     }
-    else if (req.method === "POST") {
-        const { title, email } = req.body;
+
+    if (!session && session?.user?.role !== "admin") {
+        return res.status(401).json({
+            message: "unauthorized"
+        })
+    }
+
+    if (req.method === "POST") {
+
+        /** @type {import("@prisma/client").SectionData} */
+        const body = req.body;
+        console.log('body', body)
 
         main(async function () {
             try {
-                const user = await prisma.post.create({
-                    data: {
-                        authorId: 1,
-                        title,
+                main(async function () {
+                    const section = await prisma.sectionData.create({
+                        data: {
+                            section: body.section,
+                            content: body.content,
+                            description: body.description,
+                            firstLinkHref: body.firstLinkHref,
+                            secondLinkHref: body.secondLinkHref,
+                            firstLinkText: body.firstLinkText,
+                            secondLinkText: body.secondLinkText,
+                            title: body.title,
+                            Gallery: !body.imageLinkHref ? false : {
+                                create: {
+                                    title: body?.imageTitle,
+                                    linkHref: body.imageLinkHref
+                                }
+                            }
+                        },
+                    })
 
-                    }
+                    return res.json({
+                        data: section
+                    });
                 })
-                console.log('user', user)
-
-                return res.json(user)
             } catch (error) {
                 return res.status(500).json({
                     message: "error",
@@ -54,6 +75,55 @@ export default async function handler(req, res) {
             }
 
         })
-
+        return;
     }
+
+
+    if (req.method === "PUT") {
+
+        try {
+            const body = req.body;
+
+            main(async function () {
+                const section = await prisma.sectionData.update({
+                    data: body,
+                    where: {
+                        section: body.section
+                    }
+                })
+
+                return res.json({
+                    data: section
+                })
+            })
+
+        } catch (error) {
+            return res.status(500).json({
+                error
+            })
+        }
+        return;
+    }
+
+
+    if (req.method === "DELETE") {
+        try {
+            const body = req.body;
+
+            main(async function () {
+                const section = await prisma.sectionData.delete({
+                    where: {
+                        section: body.section
+                    }
+                })
+            })
+
+        } catch (error) {
+            res.status(500).json({
+                error
+            })
+        }
+        return;
+    }
+
 }
