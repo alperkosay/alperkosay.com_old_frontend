@@ -10,7 +10,6 @@ import styles from "./hero.module.css";
 import Image from 'next/image';
 
 const HeroSection = ({sectionData}) => {
-console.log('sectionData', sectionData)
     const snap = useSnapshot(state)
 
     // First Load Animations

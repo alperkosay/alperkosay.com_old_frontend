@@ -6,15 +6,21 @@ import DrawingsSection from '@/components/DrawingsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import Head from 'next/head';
 import ContactSection from '@/components/ContactSection';
+import { SectionData } from '@prisma/client';
 
 const chivo_mono = Chivo_Mono({ subsets: ['latin'] })
 
-export default function Home({ sectionsData, serverStatus, errorMessage }) {
+
+type PageType = {
+	sectionsData: SectionData[],
+	serverStatus: boolean,
+	errorMessage: string
+}
+
+export default function Home({ sectionsData, serverStatus, errorMessage }: PageType) {
 
 
-	if (!serverStatus) {
-		console.log("error", errorMessage)
-	}
+
 
 	return (
 
@@ -43,9 +49,9 @@ export default function Home({ sectionsData, serverStatus, errorMessage }) {
 export async function getServerSideProps() {
 
 	try {
-		const response = await fetch(`${process.env.API_BASE_URL}/sectionss`);
-		const data = await response.json();
-
+		const response = await fetch(`${process.env.API_BASE_URL}/sections`);
+		const data: SectionData[] = await response.json();
+		console.log('data', data)
 		return {
 			props: {
 				sectionsData: data,

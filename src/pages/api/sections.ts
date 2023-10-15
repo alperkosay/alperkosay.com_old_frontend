@@ -1,11 +1,11 @@
 import prisma from "../../../prisma/client"
 import { getServerSession } from "next-auth"
 import { authOptions } from "./auth/[...nextauth]"
+import { NextApiRequest, NextApiResponse } from "next"
 
 
-export default async function handler(req, res) {
-    const session = await getServerSession(req, res, authOptions)
-
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+    const session = await getServerSession(req, res, authOptions);
 
     if (req.method === "GET") {
 
@@ -25,7 +25,7 @@ export default async function handler(req, res) {
 
     }
 
-    if (!session && session?.user?.role !== "admin") {
+    if (session?.user.role !== "admin" && !session) {
         return res.status(401).json({
             message: "unauthorized"
         })
@@ -48,7 +48,7 @@ export default async function handler(req, res) {
                     firstLinkText: body.firstLinkText,
                     secondLinkText: body.secondLinkText,
                     title: body.title,
-                    Gallery: !body.imageLinkHref ? false : {
+                    Gallery: !body.imageLinkHref ? {} : {
                         create: {
                             title: body?.imageTitle,
                             linkHref: body.imageLinkHref
@@ -102,9 +102,9 @@ export default async function handler(req, res) {
                 where: {
                     id: _id,
                 },
-            
+
             })
-            
+
             return res.json(section);
 
         } catch (error) {
