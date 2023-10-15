@@ -9,27 +9,55 @@ import ContactSection from '@/components/ContactSection';
 
 const chivo_mono = Chivo_Mono({ subsets: ['latin'] })
 
-export default function Home() {
+export default function Home({ sectionsData, serverStatus, errorMessage }) {
 
-  return (
 
-    <>
-      <Head>
+	if (!serverStatus) {
+		console.log("error", errorMessage)
+	}
 
-        <title>Alper Koşay</title>
-        <meta name="description" content="Kişisel portfolyo websitem." />
-        <meta name="keywords" content="Alper Koşay, Web Developer, React Developer" />
-        <meta name='author' content='Alper Koşay' />
+	return (
 
-      </Head>
-      <main className={`${chivo_mono.className} transition-all`}>
-        <HeroSection />
-        <AboutSection />
-        <SkillsSection />
-        <ProjectsSection />
-        <DrawingsSection />
-        <ContactSection />
-      </main>
-    </>
-  )
+		<>
+			<Head>
+
+				<title>Alper Koşay</title>
+				<meta name="description" content="Kişisel portfolyo websitem." />
+				<meta name="keywords" content="Alper Koşay, Web Developer, React Developer" />
+				<meta name='author' content='Alper Koşay' />
+
+			</Head>
+			<main className={`${chivo_mono.className} transition-all`}>
+				<HeroSection sectionData={sectionsData?.find(data => data.section === "hero")} />
+				<AboutSection />
+				<SkillsSection />
+				<ProjectsSection />
+				<DrawingsSection />
+				<ContactSection />
+			</main>
+		</>
+	)
+}
+
+
+export async function getServerSideProps() {
+
+	try {
+		const response = await fetch(`${process.env.API_BASE_URL}/sectionss`);
+		const data = await response.json();
+
+		return {
+			props: {
+				sectionsData: data,
+				serverStatus: response.status === 200
+			}
+		}
+	} catch (error) {
+		console.log('error', error)
+		return {
+			props: {
+				serverStatus: false,
+			}
+		}
+	}
 }

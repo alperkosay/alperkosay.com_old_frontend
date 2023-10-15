@@ -9,8 +9,8 @@ import { BsCaretDown } from "react-icons/bs";
 import styles from "./hero.module.css";
 import Image from 'next/image';
 
-const HeroSection = () => {
-
+const HeroSection = ({sectionData}) => {
+console.log('sectionData', sectionData)
     const snap = useSnapshot(state)
 
     // First Load Animations
@@ -69,9 +69,9 @@ const HeroSection = () => {
     return (
         <>
 
-            <section 
-            className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`} 
-            style={{ color: snap.color }}
+            <section
+                className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`}
+                style={{ color: snap.color }}
             >
 
                 <div className="flex justify-between flex-col lg:flex-row h-full">
@@ -94,7 +94,7 @@ const HeroSection = () => {
                             }
                         </h1>
                     </div>
-{/* 
+                    {/* 
                     <div className='w-full h-full lg:w-[500px] flex justify-end'>
                         <Image
                             src="/images/peepocomfy-peepo.gif"
