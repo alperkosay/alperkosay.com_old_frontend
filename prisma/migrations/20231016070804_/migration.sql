@@ -1,22 +1,21 @@
-/*
-  Warnings:
+-- CreateTable
+CREATE TABLE `User` (
+    `id` INTEGER NOT NULL AUTO_INCREMENT,
+    `email` VARCHAR(191) NOT NULL,
+    `userName` VARCHAR(191) NOT NULL,
+    `role` VARCHAR(191) NOT NULL DEFAULT 'user',
+    `password` VARCHAR(191) NOT NULL,
 
-  - You are about to drop the `Post` table. If the table is not empty, all the data it contains will be lost.
-
-*/
--- DropForeignKey
-ALTER TABLE `Post` DROP FOREIGN KEY `Post_authorId_fkey`;
-
--- AlterTable
-ALTER TABLE `User` ADD COLUMN `role` VARCHAR(191) NULL;
-
--- DropTable
-DROP TABLE `Post`;
+    UNIQUE INDEX `User_email_key`(`email`),
+    UNIQUE INDEX `User_userName_key`(`userName`),
+    PRIMARY KEY (`id`)
+) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- CreateTable
 CREATE TABLE `SectionData` (
     `id` INTEGER NOT NULL AUTO_INCREMENT,
     `section` VARCHAR(191) NOT NULL,
+    `subTitle` VARCHAR(191) NULL,
     `title` VARCHAR(191) NULL,
     `description` VARCHAR(191) NULL,
     `content` MEDIUMTEXT NULL,
@@ -40,4 +39,4 @@ CREATE TABLE `Gallery` (
 ) DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_unicode_ci;
 
 -- AddForeignKey
-ALTER TABLE `Gallery` ADD CONSTRAINT `Gallery_sectionId_fkey` FOREIGN KEY (`sectionId`) REFERENCES `SectionData`(`id`) ON DELETE RESTRICT ON UPDATE CASCADE;
+ALTER TABLE `Gallery` ADD CONSTRAINT `Gallery_sectionId_fkey` FOREIGN KEY (`sectionId`) REFERENCES `SectionData`(`id`) ON DELETE CASCADE ON UPDATE CASCADE;
