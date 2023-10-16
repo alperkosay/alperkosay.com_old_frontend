@@ -10,7 +10,7 @@ const Preloader = () => {
 
         gsap.to(preloaderEl.current,{
             autoAlpha: 0,
-            delay: 0.5
+            delay: 0.5  
         })
     },[])
 

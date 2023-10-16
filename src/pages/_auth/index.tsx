@@ -1,7 +1,7 @@
 import React from 'react'
 import { signIn, signOut, useSession } from "next-auth/react";
 
-const index = () => {
+const Auth = () => {
     const {data} = useSession();
     return (
         <main>
@@ -36,4 +36,4 @@ JSON.stringify(data)
     )
 }
 
-export default index
+export default Auth
