@@ -6,7 +6,10 @@ import DrawingsSection from '@/components/DrawingsSection';
 import ProjectsSection from '@/components/ProjectsSection';
 import Head from 'next/head';
 import ContactSection from '@/components/ContactSection';
+import ErrorSection from '@/components/ErrorSection';
 import { SectionData } from '@prisma/client';
+
+import Layout from "@/components/Layout/Layout";
 
 const chivo_mono = Chivo_Mono({ subsets: ['latin'] })
 
@@ -20,7 +23,9 @@ type PageType = {
 export default function Home({ sectionsData, serverStatus, errorMessage }: PageType) {
 
 
-
+	if (!sectionsData.length || !serverStatus) {
+		return <ErrorSection />
+	}
 
 	return (
 
@@ -42,6 +47,14 @@ export default function Home({ sectionsData, serverStatus, errorMessage }: PageT
 				<ContactSection />
 			</main>
 		</>
+	)
+}
+
+Home.getLayout = (page: React.ReactNode) =>{
+	return (
+		<Layout>
+			{page}
+		</Layout>
 	)
 }
 

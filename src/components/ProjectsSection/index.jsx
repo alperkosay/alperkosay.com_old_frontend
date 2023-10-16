@@ -127,7 +127,7 @@ const ProjectsSection = () => {
                                 </SwiperSlide>
                             ))
                         }
-                        <div className="navigation py-10 flex justify-center gap-3 text-4xl" style={{ color: snap.color }}>
+                        <div className="navigation py-10 flex justify-center gap-3 text-4xl text-black">
                             <button ref={sliderPrev}>
                                 <BiChevronLeft />
                             </button>

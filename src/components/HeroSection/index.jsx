@@ -1,8 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react'
 
-import { useSnapshot } from 'valtio';
-import state from '@/store';
-
 import { Bounce, Circ, Elastic, Expo, Power3, Power4, gsap } from 'gsap';
 
 import { BsCaretDown } from "react-icons/bs";
@@ -10,11 +7,9 @@ import styles from "./hero.module.css";
 import Image from 'next/image';
 
 const HeroSection = ({sectionData}) => {
-    const snap = useSnapshot(state)
 
     // First Load Animations
     useEffect(() => {
-        if (!snap.loading) {
             const tl = gsap.timeline();
             tl.fromTo(".title",
                 {
@@ -25,6 +20,7 @@ const HeroSection = ({sectionData}) => {
                     x: 0,
                     opacity: 1,
                     duration: 1,
+                    delay: 0.5,
                     ease: Expo.easeInOut
                 }
             )
@@ -45,21 +41,16 @@ const HeroSection = ({sectionData}) => {
 
             tl.fromTo(".scroll-down",
                 {
-                    opacity: 0,
-                    visibility: "hidden",
-                    pointerEvents: "none",
+                   autoAlpha: 0,
                 },
                 {
-                    opacity: 1,
-                    visibility: "visible",
-                    pointerEvents: "all",
+                    autoAlpha: 1,
                     delay: .5,
                     duration: 1,
                 }
             )
-        }
 
-    }, [snap.loading])
+    }, [])
 
     const ScrollDown = () => {
         window.scrollTo({ top: window.innerHeight, behavior: 'smooth' });
@@ -69,8 +60,7 @@ const HeroSection = ({sectionData}) => {
         <>
 
             <section
-                className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden ${styles.background}`}
-                style={{ color: snap.color }}
+                className={`hero-section p-6 max-md:py-14 md:p-12 xl:p-24 relative h-[100svh] overflow-hidden text-black ${styles.background}`}
             >
 
                 <div className="flex justify-between flex-col lg:flex-row h-full">
